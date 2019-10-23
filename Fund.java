@@ -15,7 +15,7 @@ public class Fund {
 			cplex.setOut(null);
 		
 			String[] name = {"x11", "x12", "x13", "x14", "x21", "x31", "x32",
-					 "x41", "x43", "x51", "x52", "x6",};
+					 "x41", "x43", "x51", "x52", "x61",};
 			IloNumVar[] x = cplex.numVarArray(12, 0, Double.MAX_VALUE, name);
 			
 			cplex.addMinimize(cplex.sum(x[0], x[1], x[2], x[3]));
