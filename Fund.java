@@ -10,7 +10,6 @@ import ilog.cplex.IloCplex;
 public class Fund {
 
 	public static void main(String[] args) {
-		// TODO 自动生成的方法存根
 		try {
 			IloCplex cplex = new IloCplex();
 			cplex.setOut(null);
