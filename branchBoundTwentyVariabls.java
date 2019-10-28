@@ -51,11 +51,20 @@ public class branchBoundTwentyVariabls {
 		StdOut.println("First, we solve the initial LP.");
 		dfs(temp, tempAns, 0);
 	}
+	
+	// judge whether two double are equal or not!
+	public boolean equals(double a, double b) {
+		return Math.abs(a - b) < 1e-6;
+	}
+	
+	public boolean smallEquals(double a, double b) {
+		return a < b || equals(a, b);
+	}
 
 	public void dfs(double[][] ansArr, double ans, int level) {
 		// these "if" aim to decide whether keep branching or not
 		// !!! this "if" aims to avoid final local cycle.
-		if (Math.abs(ans - preAns) < 1e-6) {
+		if (equals(ans, preAns)) {
 			StdOut.println("ans:" + ans + ", preAns is: " + preAns + ", stuck in local cycle, return!");
 			return;
 		}
@@ -63,7 +72,7 @@ public class branchBoundTwentyVariabls {
 		int[] isDouble = judgeInteger(ansArr);
 		StdOut.println();
 		StdOut.println("new ans: " + ans + " ,new value of variables: " + printAnsArr(ansArr));
-		if (ans > _signAns || Math.abs(ans - _signAns) < 1e-6) {
+		if (smallEquals(_signAns, ans)) {
 			StdOut.println("Now we're in recursion, level " + level);
 			StdOut.println("current ans " + ans + " is >= OPT: " + _signAns + ", cut branching here!");
 			return;
@@ -234,7 +243,7 @@ public class branchBoundTwentyVariabls {
 		int[] loc = { -1, -1 };
 		for (int i = 0; i < temp.length; i++)
 			for (int j = 0; j < temp[0].length; j++) {
-				// -1.999999999 should be -2£¬ 1+1e-9 should be 1
+				// -1.999999999 should be -2Â£Â¬ 1+1e-9 should be 1
 				if (temp[i][j] >= 0) {
 					if ((temp[i][j] - (int) temp[i][j] < 1e-9)) {
 						temp[i][j] = (int) temp[i][j];
